@@ -5,9 +5,9 @@ import "fmt"
 func test393(data []int, expect bool) {
 	result := validUtf8(data)
 	if result == expect {
-		fmt.Println(data, "==", result, "succ")
+		fmt.Println("[test succ]: ", data, "==", result)
 	} else {
-		fmt.Println(data, "==", result, "!=", expect, "failed")
+		fmt.Println("[test failed]: ", data, "==", result, "!=", expect)
 	}
 
 }

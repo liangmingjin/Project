@@ -1,0 +1,52 @@
+
+
+<SCRIPT LANGUAGE="VBScript"> 
+
+Sub RunScript 
+
+    If ComputerOption(0).Checked Then 
+        strComputer = ComputerOption(0).Value 
+    End If 
+    If ComputerOption(1).Checked Then 
+        strComputer = ComputerOption(1).Value 
+    End If 
+    If ComputerOption(2).Checked Then 
+        strComputer = ComputerOption(2).Value 
+    End If 
+    If ComputerOption(3).Checked Then 
+        strComputer = ComputerOption(3).Value 
+    End If 
+
+    If strComputer = "" Then 
+        Exit Sub 
+    End If 
+
+    Set objWMIService = GetObject _ 
+        ("winmgmts:\\" & strComputer & "\root\cimv2") 
+    Set colItems = objWMIService.ExecQuery _ 
+        ("Select * From Win32_OperatingSystem") 
+    For Each objItem in ColItems 
+        Msgbox objItem.Caption 
+    Next 
+
+End Sub 
+
+Sub CancelScript 
+   Self.Close() 
+End Sub 
+
+</SCRIPT> 
+
+<BODY> 
+<input type="radio" name="ComputerOption" value="atl-ws-01">atl-ws-01<BR> 
+<input type="radio" name="ComputerOption" value="atl-ws-02">atl-ws-02<BR> 
+<input type="radio" name="ComputerOption" value="atl-ws-03">atl-ws-03<BR> 
+<input type="radio" name="ComputerOption" value="atl-ws-04">atl-ws-04<P> 
+
+<input id=runbutton class="button" type="button" value="Run Script" name="ok_button"  
+onClick="RunScript"> 
+&nbsp;&nbsp;&nbsp; 
+<input id=runbutton class="button" type="button" value="Cancel" name="cancel_button"  
+onClick="CancelScript"> 
+
+</BODY> 
